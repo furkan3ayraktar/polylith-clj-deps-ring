@@ -2,10 +2,10 @@
   (:require [polylith.clj-deps-ring.ring-server.core :as core]))
 
 (defn start!
-  ([env-name]
-   (core/start! env-name))
-  ([env-name join?]
-   (core/start! env-name join?)))
+  ([proj-name]
+   (core/start! proj-name))
+  ([proj-name join?]
+   (core/start! proj-name join?)))
 
-(defn stop! [env-name]
-  (core/stop! env-name))
+(defn stop! [proj-name]
+  (core/stop! proj-name))

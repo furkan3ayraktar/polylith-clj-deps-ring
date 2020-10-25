@@ -1,11 +1,17 @@
-{:polylith {:top-namespace "polylith.clj-deps-ring"}
+{:polylith {:top-namespace    "polylith.clj_deps_ring"
+            :project-to-alias {"core" "core"}
+            :ns-to-lib        {clojure.tools.deps org.clojure/tools.deps.alpha
+                               polylith.clj.core  polylith/clj-api}}
 
- :aliases  {:polylith {:extra-deps {tengstrand/polylith
-                                    {:git/url   "https://github.com/tengstrand/polylith.git"
-                                     :sha       "b8aa8574b68afc74d032a2ef64fae5bd0ad578ce"
-                                     :deps/root "environments/core"}}}
+ :aliases  {:dev  {:extra-paths ["development/src"
 
-            :dev      {:extra-deps {env/core {:local/root "environments/core"}}}
+                                 "components/ring-server/src"
 
-            :test     {:main-opts ["-m" "polylith.cli.poly" "test"]}
-            :check    {:main-opts ["-m" "polylith.cli.poly" "check"]}}}
+                                 "bases/cli/src"]
+
+                   :extra-deps  {org.clojure/clojure          {:mvn/version "1.10.1"}
+                                 org.clojure/tools.deps.alpha {:mvn/version "0.8.695"}
+                                 polylith/clj-api             {:mvn/version "0.1.0-alpha4"}}}
+
+            :test {:extra-paths []
+                   :extra-deps  {}}}}

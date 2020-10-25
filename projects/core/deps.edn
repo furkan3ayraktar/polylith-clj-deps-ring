@@ -1,0 +1,12 @@
+{:paths   [; Base
+           "../../bases/cli/src"
+
+           ; Components
+           "../../components/ring-server/src"]
+
+ :deps    {org.clojure/clojure          {:mvn/version "1.10.1"}
+           org.clojure/tools.deps.alpha {:mvn/version "0.8.695"}
+           polylith/clj-api             {:mvn/version "0.1.0-alpha4"}}
+
+ :aliases {:test {:extra-paths []
+                  :extra-deps  {}}}}

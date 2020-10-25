@@ -2,10 +2,10 @@
   (:require [polylith.clj-deps-ring.ring-server.interface :as ring-server])
   (:gen-class))
 
-(defn -main [cmd & [env-name]]
+(defn -main [cmd & [proj-name]]
   (try
     (case cmd
-      "start" (ring-server/start! env-name true)
+      "start" (ring-server/start! proj-name true)
       (println "Allowed options: start"))
     (catch Exception e
       (println (.getMessage e))
