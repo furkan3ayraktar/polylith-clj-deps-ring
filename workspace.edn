@@ -1,0 +1,9 @@
+{:top-namespace        "polylith.clj-deps-ring"
+ :interface-ns         "interface"
+ :default-profile-name "default"
+ :compact-views        #{"libs"}
+ :vcs                  {:auto-add false
+                        :name     "git"}
+ :tag-patterns         {:release "v[0-9]*"
+                        :stable  "stable-*"}
+ :projects             {"core" {:alias "core"}}}

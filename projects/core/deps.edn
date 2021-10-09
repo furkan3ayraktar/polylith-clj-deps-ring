@@ -1,12 +1,7 @@
-{:paths   [; Base
-           "../../bases/cli/src"
+{:deps    {poly/cli                     {:local/root "../../bases/cli"}
+           poly/ring-server             {:local/root "../../components/ring-server"}
 
-           ; Components
-           "../../components/ring-server/src"]
-
- :deps    {org.clojure/clojure          {:mvn/version "1.10.1"}
-           org.clojure/tools.deps.alpha {:mvn/version "0.8.695"}
-           polylith/clj-api             {:mvn/version "0.1.0-alpha4"}}
+           org.clojure/clojure          {:mvn/version "1.10.3"}}
 
  :aliases {:test {:extra-paths []
                   :extra-deps  {}}}}

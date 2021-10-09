@@ -1,17 +1,12 @@
-{:polylith {:top-namespace    "polylith.clj_deps_ring"
-            :project-to-alias {"core" "core"}
-            :ns-to-lib        {clojure.tools.deps org.clojure/tools.deps.alpha
-                               polylith.clj.core  polylith/clj-api}}
+{:aliases {:dev  {:extra-paths ["development/src"
 
- :aliases  {:dev  {:extra-paths ["development/src"
+                                "components/ring-server/src"
 
-                                 "components/ring-server/src"
+                                "bases/cli/src"]
 
-                                 "bases/cli/src"]
+                  :extra-deps  {org.clojure/clojure          {:mvn/version "1.10.3"}
+                                org.clojure/tools.deps.alpha {:mvn/version "0.12.1048"}
+                                polylith/clj-api             {:mvn/version "0.2.12-alpha"}}}
 
-                   :extra-deps  {org.clojure/clojure          {:mvn/version "1.10.1"}
-                                 org.clojure/tools.deps.alpha {:mvn/version "0.8.695"}
-                                 polylith/clj-api             {:mvn/version "0.1.0-alpha4"}}}
-
-            :test {:extra-paths []
-                   :extra-deps  {}}}}
+           :test {:extra-paths []
+                  :extra-deps  {}}}}
