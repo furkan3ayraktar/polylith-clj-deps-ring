@@ -3,17 +3,15 @@
             [clojure.tools.deps.alpha :as tools-deps]
             [polylith.clj.core.common.interface :as p-common]))
 
-(def servers (atom {}))
+(def running-server (atom nil))
 
-(defn stop! [proj-name]
-  (when-let [server (get @servers proj-name)]
-    (when (.isStarted server)
-      (.stop server))
-    (swap! servers dissoc proj-name)
-    nil))
+(defn stop! []
+  (when (and @running-server (.isStarted @running-server))
+    (.stop @running-server)
+    (reset! running-server nil)))
 
-(defn serve [proj-name deps join?]
-  (let [_ (stop! proj-name)
+(defn serve [deps join?]
+  (let [_ (stop!)
         resolved-deps (tools-deps/resolve-deps deps {:extra-deps {'ring-server {:mvn/version "0.5.0"}}})
         lib-paths (into #{} (mapcat #(-> % second :paths) resolved-deps))
         src-paths (map #(-> %
@@ -48,12 +46,12 @@
                                                         :reload-paths          (into (or (-> deps# :ring :reload-paths) [])
                                                                                      (:paths deps#))})))))]
     (when-not join?
-      (swap! servers assoc proj-name server))
+      (reset! running-server server))
     nil))
 
 (defn start!
-  ([proj-name]
-   (start! proj-name false))
-  ([proj-name join?]
-   (let [deps (-> (str "projects/" proj-name "/deps.edn") slurp read-string)]
-     (serve proj-name deps join?))))
+  ([]
+   (start! false))
+  ([join?]
+   (let [deps (-> "deps.edn" slurp read-string)]
+     (serve deps join?))))
